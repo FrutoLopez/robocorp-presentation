@@ -1,40 +1,56 @@
-import altair as alt
-import numpy as np
-import pandas as pd
 import streamlit as st
+import polars as pl
+import pandas as pd
+import time
+
+
+
+_WhatRPA = """
+## ¿Qué es :red[**RPA**]?
+- Automatización robótica de procesos (:red[**R**]obotic :red[**P**]rocess :red[**A**]utomation)
+- Herramienta de automatización de procesos con pasos definidos por medio de bots
+- **No** es AI
+### Características generales de herramientas de RPA
+- Suelen ser :green[low-code] o :green[no-code]
+	- Robocorp es :blue[**full**] code
+- Tienen capacidad de gestión y despliegue de los bots mediante un orquestrador
+- Facilita interacciones entre distintos programas
+	- Capaz de interactuar con elementos de UI
 
 """
-# Welcome to Streamlit!
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:.
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
 
-In the meantime, below is an example of what you can do with just a few lines of code:
+
+
+
+_WhatRobocorp="""
+## ¿Qué es Robocorp?
+- Plataforma Open Source de RPA construida sobre Python
+	- Es programable en Python
+- Tiene herramientas de gestión por medio de cloud
 """
 
-num_points = st.slider("Number of points in spiral", 1, 10000, 1100)
-num_turns = st.slider("Number of turns in spiral", 1, 300, 31)
 
-indices = np.linspace(0, 1, num_points)
-theta = 2 * np.pi * num_turns * indices
-radius = indices
+def WhatRPA_stream():
+    for word in _WhatRPA.split(" "):
+        yield word + " "
+        time.sleep(0.05)
 
-x = radius * np.cos(theta)
-y = radius * np.sin(theta)
+if st.button("Inicio"):
+    st.write_stream(WhatRPA_stream)
+    time.sleep(0.05)
+    st.image('cloud-processing-icon-flat-design-J34YRB-04.png',caption="Imagen de Softbotic")
+    with st.expander("Vendors"):
+        vend1, vend2, vend3 = st.columns(3)
+        vend4, vend5, vend6 = st.columns(3)
+        vend7, vend8, vend9 = st.columns(3)
+        with vend1:
+            st.image("Vendors/1MSPA.webp",caption = "Power Automate")
+        with vend2:
+            st.image("Vendors/2UI.png",caption = "UI Path")
+        with vend3:
+            st.image("Vendors/3AA.png",caption = "Automation Anywhere")
 
-df = pd.DataFrame({
-    "x": x,
-    "y": y,
-    "idx": indices,
-    "rand": np.random.randn(num_points),
-})
 
-st.altair_chart(alt.Chart(df, height=700, width=700)
-    .mark_point(filled=True)
-    .encode(
-        x=alt.X("x", axis=None),
-        y=alt.Y("y", axis=None),
-        color=alt.Color("idx", legend=None, scale=alt.Scale()),
-        size=alt.Size("rand", legend=None, scale=alt.Scale(range=[1, 150])),
-    ))
+
+
