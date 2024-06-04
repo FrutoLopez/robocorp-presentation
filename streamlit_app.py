@@ -1,6 +1,4 @@
 import streamlit as st
-import polars as pl
-import pandas as pd
 import time
 
 
