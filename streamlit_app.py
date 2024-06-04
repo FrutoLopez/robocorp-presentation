@@ -43,11 +43,11 @@ if st.button("Inicio"):
         vend4, vend5, vend6 = st.columns(3)
         vend7, vend8, vend9 = st.columns(3)
         with vend1:
-            st.image("Vendors/1MSPA.webp",caption = "Power Automate")
+            st.image(".github/workflows/Vendors/1MSPA.webp",caption = "Power Automate")
         with vend2:
-            st.image("Vendors/2UI.png",caption = "UI Path")
+            st.image(".github/workflows/Vendors/2UI.png",caption = "UI Path")
         with vend3:
-            st.image("Vendors/3AA.png",caption = "Automation Anywhere")
+            st.image(".github/workflows/Vendors/3AA.png",caption = "Automation Anywhere")
 
 
 
