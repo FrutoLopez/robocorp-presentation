@@ -37,7 +37,7 @@ def WhatRPA_stream():
 if st.button("Inicio"):
     st.write_stream(WhatRPA_stream)
     time.sleep(0.05)
-    st.image('https://github.com/FrutoLopez/robocorp-presentation/blob/main/.github/workflows/cloud-processing-icon-flat-design-J34YRB-04.png',caption="Imagen de Softbotic")
+    st.image('.github/workflows/cloud-processing-icon-flat-design-J34YRB-04.png',caption="Imagen de Softbotic")
     with st.expander("Vendors"):
         vend1, vend2, vend3 = st.columns(3)
         vend4, vend5, vend6 = st.columns(3)
