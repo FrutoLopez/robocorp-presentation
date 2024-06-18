@@ -2,7 +2,6 @@ import streamlit as st
 import time
 
 
-
 _WhatRPA = """
 # ¿Qué es :red[RPA]?
 - Automatización robótica de procesos (:red[**R**]obotic :red[**P**]rocess :red[**A**]utomation)
@@ -21,29 +20,12 @@ _WhatRPA = """
 
 """
 
-_WhatRobocorp="""
-# ¿Qué es :blue[Robocorp]?
-- Plataforma Open Source de RPA construida sobre Python
-	- Inicialmente programable mediante Robot Framework
-    - Actualmente se programa utilizando Python
-        - Esto le permite utilizar diversas bibliotecas de Python (aunque trabaja mejor con las bibliotecas directas de Robocorp o RPA)
-- Tiene herramientas de gestión por medio de cloud: Control Room
-- No requiere tener Python instalado para ejecutar un bot
-    - El equipo del usuario final puede tener instalado los componentes de agente o trabajador para gestionar el bot desde el orquestador
-    - 
-"""
-
 tab1, tab2 = st.tabs(["RPA","Robocorp"])
 
 def WhatRPA_stream():
     for word in _WhatRPA.split(" "):
         yield word + " "
-        time.sleep(0.05)
-
-def WhatRobocorp_stream():
-    for word in _WhatRobocorp.split(" "):
-        yield word + " "
-        time.sleep(0.05)
+        time.sleep(0.00)
 
 with tab1:
     st.write_stream(WhatRPA_stream)
@@ -73,7 +55,33 @@ with tab1:
             st.image("Images/Vendors/9Pe.png",caption = "Pega")
 
 with tab2:
-    if tab2:
-        st.write_stream(WhatRobocorp_stream)
-
-
+    """
+    # ¿Qué es :blue[Robocorp]?
+    - Plataforma Open Source de RPA construida sobre Python
+        - Inicialmente programable mediante Robot Framework
+        - Actualmente se programa utilizando Python
+            - Esto le permite utilizar diversas bibliotecas de Python (aunque trabaja mejor con las bibliotecas directas de Robocorp o RPA)
+    - Tiene herramientas de gestión por medio de cloud: Control Room
+    """
+    st.image("Images/control-room-overview.png", caption="Estructura de Robocorp")
+    """
+    ## ¿Por qué Robocorp vs Python Script?
+    - Portabilidad y administraciíón
+        - Un task package de Robocorp incluye un archivo de configuración conda.yaml donde se especifican las bibliotecas a utilizar y las versiones de las mismas
+        - Si la biblioteca no está presente en el entorno, corre el comando "pip install"
+    """
+    st.image("Images/conda.png")
+    
+    """
+    - No requiere tener Python instalado para ejecutar un bot
+        - El equipo del usuario final puede tener instalado los componentes de agente o trabajador para gestionar el bot desde el orquestador
+        - Flexibilidad a la hora de gestionar y desplegar bots
+            - Por medio del Control Room
+                - Limitado pero funcional para la versión gratuita
+            - Por medio de rcc
+                - Herramienta de línea de comando que gestiona los entornos de RPA
+                - Descarga las dependencias requeridas según el archivo conda
+                - Se puede crear un archivo .bat para ejecutarlo sin necesidad de tener un IDE
+    """
+    st.image("Images/bot-folder.png", caption = "Los archivos necesarios para ejecutar un bot")
+    st.image("Images/bat.png", caption = "Ejemplo sencillo de archivo bat para ejecutar el bot")
